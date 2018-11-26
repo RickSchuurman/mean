@@ -15,8 +15,8 @@ import { AppComponent } from "./app.component";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { HeaderComponent } from "./header/header.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
-import { ItemComponent } from './item/item.component';
-import { ListComponent } from './list/list.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserItemComponent } from './user-item/user-item.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,8 @@ import { ListComponent } from './list/list.component';
     PostCreateComponent,
     HeaderComponent,
     PostListComponent,
-    ItemComponent,
-    ListComponent
+    UserListComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,
