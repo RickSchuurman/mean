@@ -4,7 +4,6 @@ import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
 import { Post } from "./post.model";
-import { identifierModuleUrl } from "@angular/compiler";
 
 @Injectable({ providedIn: "root" })
 export class PostsService {
@@ -15,7 +14,7 @@ export class PostsService {
 
   getPosts() {
     this.http
-      .get<{ message: string; posts: any }>("http://localhost:3000/api/posts")
+      .get<{ message: string; posts: any }>("http://localhost:3000/api/getposts")
       .pipe(
         map(postData => {
           return postData.posts.map(post => {
@@ -37,10 +36,16 @@ export class PostsService {
     return this.postsUpdated.asObservable();
   }
 
+
+  getPost(id: string) {
+    return { ...this.posts.find(p => p.id === id) };
+  }
+
+
   addPost(title: string, content: string) {
     const post: Post = { id: null, title: title, content: content };
     this.http
-      .post<{ message: string, postId: string }>("http://localhost:3000/api/posts", post)
+      .post<{ message: string, postId: string }>("http://localhost:3000/api/addposts", post)
       .subscribe(responseData => {
         const id = responseData.postId;
         post.id = id;
