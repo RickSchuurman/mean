@@ -29,7 +29,6 @@ export class PostsService {
                 title: post.title,
                 content: post.content,
                 id: post._id,
-                imagePath: post.imagePath,
                 creator: post.creator
               };
             }),
@@ -56,40 +55,37 @@ export class PostsService {
       _id: string;
       title: string;
       content: string;
-      imagePath: string;
       creator: string;
     }>(BACKEND_URL + id);
   }
 
 
-  addPost(title: string, content: string, image: File) {
-    const postData = new FormData();
-    postData.append('title', title);
-    postData.append('content', content);
-    postData.append('image', image, title);
+  addPost(title: string, content: string) {
+    let postData: Post;
+    {
+      postData = {
+        id: null,
+        title: title,
+        content: content,
+        creator: null
+      };
+    }
 
     this.http
-      .post<{ message: string, post: Post }>(BACKEND_URL, postData)
+      .post(BACKEND_URL, postData)
       .subscribe(responseData => {
         this.router.navigate(['/']);
       });
   }
 
 
-  updatePost(id: string, title: string, content: string, image: File | string) {
-    let postData: Post | FormData;
-    if (typeof image === 'object') {
-      postData = new FormData();
-      postData.append('id', id);
-      postData.append('title', title);
-      postData.append('content', content);
-      postData.append('image', image, title);
-    } else {
+  updatePost(id: string, title: string, content: string | string) {
+    let postData: Post;
+     {
       postData = {
         id: id,
         title: title,
         content: content,
-        imagePath: image,
         creator: null
       };
     }
