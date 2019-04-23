@@ -19,7 +19,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   post: Post;
   isLoading = false;
   form: FormGroup;
-  imagePreview: string;
+  imagePreview: any;
   private mode = 'create';
   private postId: string;
   private authStatusSub: Subscription;
