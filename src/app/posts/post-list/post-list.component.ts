@@ -1,10 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {PageEvent} from '@angular/material';
 import {Subscription} from 'rxjs';
 
 import {Post} from '../post.model';
 import {PostsService} from '../posts.service';
 import {AuthService} from '../../auth/auth.service';
+import {s} from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-post-list',
